@@ -3,6 +3,8 @@ Classification of investor's riskiness based on his investments portfolio and tr
 
 Made by:
 
-Siin Mardahaev\n
-Pelageya Pashinskaya\n
-Maria Morozova\n
+Siin Mardahaev
+
+Pelageya Pashinskaya
+
+Maria Morozova
