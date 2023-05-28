@@ -1,4 +1,3 @@
-#Разархивирование, не запускать если папка data уже существует
 import zipfile
 import os
 import shutil
