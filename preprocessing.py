@@ -67,7 +67,7 @@ def format_deals (id: int, market: int, mode: str) -> str or None:
         last_occurrence = deals[deals['ticker'] == search_value].iloc[-1]
         start_price = abs(first_occurrence['summ']/first_occurrence['quantity'])
         final_price = abs(last_occurrence['summ']/last_occurrence['quantity'])
-        volatility = (abs((final_price - start_price))/start_price) * 100
+        volatility = ((final_price - start_price))/(start_price+0.001) * 100
         deals.replace(ticker, volatility, inplace = True)
     os.remove(path)
     deals.to_csv(path)
@@ -80,6 +80,7 @@ def format_main(mode: str, index_col: bool) -> None:
         main[clmn] = pd.Series.str(main[clmn]).replace(',', '.')
         main[clmn] = pd.Series.str(main[clmn]).replace(' ', '')
     main['income_percent'].loc[main['income_percent'] == '-'] = np.nan
+    main['income_percent'] = main['income_percent'].fillna(main.income_rub/main.start_sum)
     main = main.astype({'start_sum': 'float', 'income_rub': 'float', 'income_percent': 'float'})
     os.remove(path)
     main.to_csv(path, index = index_col)
